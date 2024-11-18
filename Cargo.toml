@@ -1,0 +1,47 @@
+# Copyright 2022 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 <LICENSE-APACHE or
+# https://www.apache.org/licenses/LICENSE-2.0> or the MIT license
+# <LICENSE-MIT or https://opensource.org/licenses/MIT>, at your
+# option. This file may not be copied, modified, or distributed
+# except according to those terms.
+
+[package]
+name = "ripunzip"
+version = "2.0.0"
+edition = "2021"
+authors = ["Adrian Taylor <adetaylor@chromium.org>"]
+license = "MIT OR Apache-2.0"
+readme = "README.md"
+description = "A tool to unzip an archive in parallel"
+repository = "https://github.com/google/ripunzip"
+rust-version = "1.70"
+
+[features]
+real_world_benchmark = []
+
+[dependencies]
+
+[dev-dependencies]
+hexdump = "0.1.1"
+httptest = "0.15"
+http = "0.2.8"
+hyper = "0.14.23"
+test-log = "0.2.11"
+criterion = "0.3"
+ripunzip_test_utils = { path = "test_utils" }
+
+[[bench]]
+name = "ripunzip_benchmark"
+harness = false
+
+[lib]
+name = "ripunzip"
+path = "src/lib.rs"
+
+[[bin]]
+name = "ripunzip"
+path = "src/main.rs"
+
+[workspace]
+members = ["test_utils"]
